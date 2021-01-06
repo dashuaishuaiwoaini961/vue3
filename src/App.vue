@@ -1,5 +1,5 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <img alt="Vue logo" src="./assets/logo.png" class="img" />
     <HelloWorld msg="Hello Vue + Vite" />
 </template>
 
@@ -13,3 +13,4 @@ export default {
     }
 };
 </script>
+
