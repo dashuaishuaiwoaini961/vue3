@@ -3,6 +3,13 @@
     <!-- <button @click="add">count is: {{ state.count }}</button> -->
     <p>Edit <code>components/HelloWorld.vue</code> to test hot module replacement.</p>
     <div id-="slot"></div>
+    <button @click="showToast" class="btn">打开 toast</button>
+    <!-- 传送门 -->
+    <teleport to="#teleport-target">
+        <div v-if="visible" class="toast-wrap">
+            <div class="toast-msg">我是一个 Toast 文案</div>
+        </div>
+    </teleport>
 </template>
 
 <script lang='ts'>
@@ -50,6 +57,15 @@ export default defineComponent({
         msg: String
     },
     setup() {
+        const visible = ref(false)
+        let timer: any
+        const showToast = () => {
+            visible.value = true
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                visible.value = false
+            }, 2000)
+        }
         onMounted(() => {
             console.log('onMounted')
         })
@@ -94,7 +110,9 @@ export default defineComponent({
         //     add
         // };
         return {
-            text: useDebouncedRef('')
+            text: useDebouncedRef(''),
+            showToast,
+            visible
         }
     }
 })
